@@ -57,6 +57,9 @@
     <ClCompile Include="Flash.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="State.hpp">
@@ -102,6 +105,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Flash.hpp">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.hpp">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
