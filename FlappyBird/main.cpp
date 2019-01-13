@@ -1,7 +1,7 @@
 #include "Game.hpp"
 #include "DEFINITIONS.hpp"
 
-int main()
+int WinMain()
 {
 	Sonar::Game(SCREEN_WIDTH, SCREEN_HEIGHT, "Flappy Bird");
 
