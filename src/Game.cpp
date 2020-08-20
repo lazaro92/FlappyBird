@@ -17,7 +17,7 @@ namespace Sonar
 
 	void Game::Run()
 	{
-		float newTime, frameTime, interpolation;
+		float newTime, frameTime;
 		
 		float currentTime = this->_clock.getElapsedTime().asSeconds();
 		float accumulator = 0.0f;
@@ -45,7 +45,6 @@ namespace Sonar
 				accumulator -= dt;
 			}
 
-			interpolation = accumulator / dt;
 			this->_data->machine.GetActiveState()->Draw(dt);
 		}
 	}

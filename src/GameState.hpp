@@ -1,7 +1,9 @@
 #pragma once
 
-#include <SFML\Graphics.hpp>
-#include <SFML\Audio.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Audio/Sound.hpp>
+#include <SFML/System/Clock.hpp>
 #include "State.hpp"
 #include "Game.hpp"
 #include "Pipe.hpp"

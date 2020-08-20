@@ -1,16 +1,16 @@
 #pragma once
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 #include "State.hpp"
 #include "Game.hpp"
 
 namespace Sonar
 {
-	class SplashState: public State 
+	class MainMenuState : public State
 	{
 	public:
-		SplashState(GameDataRef data);
-		
+		MainMenuState(GameDataRef data);
+
 		void Init();
 		void HandleInput();
 		void Update(float dt);
@@ -18,7 +18,8 @@ namespace Sonar
 
 	private:
 		GameDataRef _data;
-		sf::Clock _clock;
 		sf::Sprite _background;
+		sf::Sprite _title;
+		sf::Sprite _playButton;
 	};
 }

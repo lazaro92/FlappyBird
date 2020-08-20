@@ -106,7 +106,7 @@ namespace Sonar
 			bird->Update(dt);
 
 			std::vector<sf::Sprite> landSprites = land->GetSprites();
-			for (int i = 0; i < landSprites.size(); i++)
+			for (decltype(landSprites.size()) i = 0; i < landSprites.size(); i++)
 			{
 				if (collision.CheckSpriteCollision(bird->GetSprite(), 0.7f, landSprites.at(i), 1.0f))
 				{
@@ -118,7 +118,7 @@ namespace Sonar
 			}
 
 			std::vector<sf::Sprite> pipeSprites = pipe->GetSprites();
-			for (int i = 0; i < pipeSprites.size(); i++)
+			for (decltype(pipeSprites.size()) i = 0; i < pipeSprites.size(); i++)
 			{
 				if (collision.CheckSpriteCollision(bird->GetSprite(), 0.625f, pipeSprites.at(i), 1.0f))
 				{
@@ -131,7 +131,7 @@ namespace Sonar
 
 			if (GameStates::ePlaying == _gameState) {
 				std::vector<sf::Sprite> &scoringSprites = pipe->GetScoringSprites();
-				for (int i = 0; i < scoringSprites.size(); i++)
+				for (decltype(pipeSprites.size()) i = 0; i < scoringSprites.size(); i++)
 				{
 					if (collision.CheckSpriteCollision(bird->GetSprite(), 0.625f, scoringSprites.at(i), 1.0f))
 					{
