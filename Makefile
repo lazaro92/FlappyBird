@@ -1,50 +1,90 @@
-output: main.o AssetManager.o Bird.o Collision.o Flash.o Game.o GameOverState.o GameState.o HUD.o InputManager.o Land.o MainMenuState.o Pipe.o SplashState.o StateMachine.o
-	g++ -g main.o AssetManager.o Bird.o Collision.o Flash.o Game.o GameOverState.o GameState.o HUD.o InputManager.o Land.o MainMenuState.o Pipe.o SplashState.o StateMachine.o -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -o output
+#########################################
+# Author: Albert Lazaro de Lara         #
+#########################################
 
-main.o: src/main.cpp
-	g++ -g -Wall -c src/main.cpp
 
-AssetManager.o: src/AssetManager.cpp src/AssetManager.hpp
-	g++ -g -Wall -c src/AssetManager.cpp
+### variables ##############
 
-Bird.o: src/Bird.cpp src/Bird.hpp
-	g++ -g -Wall -c src/Bird.cpp
+CXX      := g++
+OBJECTS  := main.o AssetManager.o Bird.o Collision.o Flash.o Game.o GameOverState.o GameState.o HUD.o InputManager.o Land.o MainMenuState.o Pipe.o SplashState.o StateMachine.o
+LIBRARY  := -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+CXXFLAGS := -I Include/
 
-Collision.o: src/Collision.cpp src/Collision.hpp
-	g++ -g -Wall -c src/Collision.cpp
+ifeq ($(BUILD),develop)
+    CXXFLAGS += -Wall -O2 -g
+else ifeq ($(BUILD),release)
+    CXXFLAGS += -O2 -s -DNDEBUG
+else
+    CXXFLAGS += -Wall -O0 -g
+endif
 
-Flash.o: src/Flash.cpp src/Flash.hpp
-	g++ -g -Wall -c src/Flash.cpp
+############################
 
-Game.o: src/Game.cpp src/Game.hpp
-	g++ -g -Wall -c src/Game.cpp
+ifneq ($(MAKECMDGOALS),clean)
+    ifeq ($(BUILD),develop)
+        $(info ****************** DEVELOP BUILD ********************)
+    else ifeq ($(BUILD),release)
+        $(info ****************** RELEASE BUILD ********************)
+    else
+        $(info ******************* DEBUG BUILD *********************)
+    endif
+endif
 
-GameOverState.o: src/GameOverState.cpp src/GameOverState.hpp
-	g++ -g -Wall -c src/GameOverState.cpp
+############################ 
 
-GameState.o: src/GameState.cpp src/GameState.hpp
-	g++ -g -Wall -c src/GameState.cpp
 
-HUD.o: src/HUD.cpp src/HUD.hpp
-	g++ -g -Wall -c src/HUD.cpp
+output: $(OBJECT)
+	$(CXX) $(CXXFLAGS) $(LIBRARY) -o FlappyBird.out $(OBJECTS) 
 
-InputManager.o: src/InputManager.cpp src/InputManager.hpp
-	g++ -g -Wall -c src/InputManager.cpp
+main.o: Source/main.cpp
+	$(CXX) $(CXXFLAGS) -c Source/main.cpp
 
-Land.o: src/Land.cpp src/Land.hpp
-	g++ -g -Wall -c src/Land.cpp
+AssetManager.o: Source/AssetManager.cpp Include/AssetManager.hpp
+	$(CXX) $(CXXFLAGS) -c Source/AssetManager.cpp
 
-MainMenuState.o: src/MainMenuState.cpp src/MainMenuState.hpp
-	g++ -g -Wall -c src/MainMenuState.cpp
+Bird.o: Source/Bird.cpp Include/Bird.hpp
+	$(CXX) $(CXXFLAGS) -c Source/Bird.cpp
 
-Pipe.o: src/Pipe.cpp src/Pipe.hpp
-	g++ -g -Wall -c src/Pipe.cpp
+Collision.o: Source/Collision.cpp Include/Collision.hpp
+	$(CXX) $(CXXFLAGS) -c Source/Collision.cpp
 
-SplashState.o: src/SplashState.cpp src/SplashState.hpp
-	g++ -g -Wall -c src/SplashState.cpp
+Flash.o: Source/Flash.cpp Include/Flash.hpp
+	$(CXX) $(CXXFLAGS) -c Source/Flash.cpp
 
-StateMachine.o: src/StateMachine.cpp src/StateMachine.hpp
-	g++ -g -Wall -c src/StateMachine.cpp
+Game.o: Source/Game.cpp Include/Game.hpp
+	$(CXX) $(CXXFLAGS) -c Source/Game.cpp
 
+GameOverState.o: Source/GameOverState.cpp Include/GameOverState.hpp
+	$(CXX) $(CXXFLAGS) -c Source/GameOverState.cpp
+
+GameState.o: Source/GameState.cpp Include/GameState.hpp
+	$(CXX) $(CXXFLAGS) -c Source/GameState.cpp
+
+HUD.o: Source/HUD.cpp Include/HUD.hpp
+	$(CXX) $(CXXFLAGS) -c Source/HUD.cpp
+
+InputManager.o: Source/InputManager.cpp Include/InputManager.hpp
+	$(CXX) $(CXXFLAGS) -c Source/InputManager.cpp
+
+Land.o: Source/Land.cpp Include/Land.hpp
+	$(CXX) $(CXXFLAGS) -c Source/Land.cpp
+
+MainMenuState.o: Source/MainMenuState.cpp Include/MainMenuState.hpp
+	$(CXX) $(CXXFLAGS) -c Source/MainMenuState.cpp
+
+Pipe.o: Source/Pipe.cpp Include/Pipe.hpp
+	$(CXX) $(CXXFLAGS) -c Source/Pipe.cpp
+
+SplashState.o: Source/SplashState.cpp Include/SplashState.hpp
+	$(CXX) $(CXXFLAGS) -c Source/SplashState.cpp
+
+StateMachine.o: Source/StateMachine.cpp Include/StateMachine.hpp
+	$(CXX) $(CXXFLAGS) -c Source/StateMachine.cpp
+
+############################
+
+# To prevent make from getting confused by an actual file called clean, me may use .PHONY:
+# .hppe "-" in -rm causes make to continue in spite of errors from rm
+.PHONY: clean
 clean:
-	rm *.o
+	-rm $(OBJECTS) FlappyBird.out
