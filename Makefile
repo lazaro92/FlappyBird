@@ -33,7 +33,7 @@ endif
 ############################ 
 
 
-output: $(OBJECT)
+output: $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $(LIBRARY) -o FlappyBird.out $(OBJECTS) 
 
 main.o: Source/main.cpp
