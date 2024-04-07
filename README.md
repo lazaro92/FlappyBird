@@ -14,11 +14,12 @@ By default, the Makefile uses G++ compiler, but you can change the variable `CXX
 
 ## 🔨 Build
 
-There is a Makefile to ease the build of the project. Three different build options are available:
+You will need to use CMake min version 3.28.
 
-1. `make` or `make BUILD=debug`: builds the project without any compiler optimizations and with debug symbols.
-2. `make BUILD=develop`: builds the project with all the compiler optimizations (O2) and with debug symbols.
-3. `make BUILD=release`: **RECOMMENDED** builds the project with all compiler optimizations and without debug symbols.
+1. Create `build` folder in the root directory of the project.
+2. Then execute `cmake ..` **from the build folder** That will create the make file, download the SFML dependencies and copy the resources folder to the build one.
+3. Finally execute `cmake --build .` To compile the project.
+4. Execute the program by doing `./flappy_bird`
 
 ## 🕹️ How to Play
 
