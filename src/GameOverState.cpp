@@ -16,7 +16,7 @@ namespace Sonar
 	void GameOverState::Init()
 	{
 		std::ifstream readFile;
-		readFile.open("Resources\\highscore.txt");
+		readFile.open("resources\\highscore.txt");
 		if (readFile.is_open())
 		{
 			while (!readFile.eof())
@@ -28,7 +28,7 @@ namespace Sonar
 
 		if (_score > _highScore)
 		{
-			std::ofstream writeFile("Resources\\highscore.txt");
+			std::ofstream writeFile("resources\\highscore.txt");
 			if (writeFile.is_open())
 			{
 				_highScore = _score;
